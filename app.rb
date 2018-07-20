@@ -41,3 +41,23 @@ get("/brands/:id") do
   @stores = Store.all
   erb(:brand)
 end
+
+get("/stores/:id") do
+  @store = Store.find(params.fetch("id").to_i())
+  @brands = Brand.all
+  erb(:store)
+end
+
+patch("/brands/:id") do
+  store_id = params.fetch("store_id").to_i()
+  @brand = Brand.find(params.fetch("id").to_i())
+  @brand.stores.push(store_id)
+  redirect back
+end
+
+patch("/stores/:id") do
+  brand = Brand.find(params.fetch("brand_id").to_i())
+  @store = Store.find(params.fetch("id").to_i())
+  @store.brands.push(brand)
+  redirect back
+end
