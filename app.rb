@@ -48,15 +48,14 @@ get("/stores/:id") do
   erb(:store)
 end
 
-patch("/brands/:id") do
-  store_id = params.fetch("store_id").to_i()
-  @brand = Brand.find(params.fetch("id").to_i())
-  @brand.stores.push(store_id)
+post("/stores/:id/brand") do
+  brand = Brand.find(params.fetch("brand_id").to_i())
+  @store = Store.find(params.fetch("store_id").to_i())
+  @store.brands.push(brand)
   redirect back
 end
 
 patch("/stores/:id") do
-  # brand = Brand.find(params.fetch("brand_id").to_i())
   name_new = params.fetch("name")
   @store = Store.find(params.fetch("id").to_i())
   @store.update({:name => name_new})
