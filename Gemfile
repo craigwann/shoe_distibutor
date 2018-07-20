@@ -5,6 +5,8 @@ gem("sinatra-activerecord")
 gem("rake")
 gem("pg")
 gem("sinatra")
+gem 'thin'
+
 
 group(:test) do
   gem("rspec")
