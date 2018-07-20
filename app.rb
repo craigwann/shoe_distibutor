@@ -61,3 +61,9 @@ patch("/stores/:id") do
   @store.brands.push(brand)
   redirect back
 end
+
+delete('/stores/:id') do
+  @store = Store.find(params.fetch("id").to_i)
+  Store.destroy(@store.id)
+  redirect '/'
+end
