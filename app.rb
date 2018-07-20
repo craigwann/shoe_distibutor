@@ -30,3 +30,14 @@ post("/stores") do
   Store.create({:name => name})
   redirect("/stores")
 end
+
+get("/brands/:id") do
+  @brand = Brand.find(params.fetch("id").to_i())
+  # if @brand.store_id
+  #   @store = Store.find(@brand.store_id)
+  # else
+  #   @store = nil
+  # end
+  @stores = Store.all
+  erb(:brand)
+end
