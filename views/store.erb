@@ -5,7 +5,7 @@
   <h3>Here are the brands currently assigned to this store:</h3>
   <ul>
     <% @store.brands.each() do |store_brand| %>
-      <li><%= store_brand.name %></li>
+      <li><%= store_brand.name %>- $<%= store_brand.price() %></li>
     <% end %>
   </ul>
 
