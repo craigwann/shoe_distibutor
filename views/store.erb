@@ -16,7 +16,7 @@
 
 <% end %>
 <hr>
-<p>Add an brand to this store:<p>
+<h4>Add an brand to this store:<h4>
 <form id="add_brand_id" action="/stores/<%= @store.id %>/brand" method="post">
   <input name="_method" type="hidden" value="post">
   <input type="hidden" name="store_id" id="store_id" value="<%= @store.id() %>">
@@ -28,7 +28,7 @@
       <option value="<%= brand.id() %>"><%= brand.name() %> - $<%= sprintf("%.2f", brand.price().to_i) %></option>
     <% end %>
   </select>
-  <button class="btn btn-primary" type="submit">Submit</button>
+  <button class="btn btn-primary" type="submit">Add Shoe</button>
 </form>
 <hr>
 
@@ -42,6 +42,6 @@
 <hr>
 <form action="/stores/<%= @store.id() %>" method="post">
   <input name="_method" type="hidden" value="delete">
-  <label for="name">Delete this store:</label>
+  <label for="name">Delete <em><%= @store.name() %></em>:</label>
   <button type="submit" class="btn btn-danger">Delete this Store</button>
 </form>
