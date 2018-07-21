@@ -55,6 +55,14 @@ post("/stores/:id/brand") do
   redirect back
 end
 
+patch("/brands/:id") do
+  brand = Brand.find(params.fetch("brand_id").to_i())
+  @store = Store.find(params.fetch("store_id").to_i())
+  @store.brands.push(brand)
+  redirect back
+end
+
+
 patch("/stores/:id") do
   name_new = params.fetch("name")
   @store = Store.find(params.fetch("id").to_i())

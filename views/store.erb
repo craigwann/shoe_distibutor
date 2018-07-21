@@ -2,10 +2,10 @@
 <hr>
 
 <% if @store.brands.any? %>
-  <h3>Here are the brands currently assigned to this store:</h3>
+  <h3>Here are the brands currently available at this store:</h3>
   <ul>
     <% @store.brands.each() do |store_brand| %>
-      <li><%= store_brand.name %>- $<%= store_brand.price() %></li>
+      <li><%= store_brand.name %>- $<%= sprintf("%.2f", store_brand.price().to_i) %></li>
     <% end %>
   </ul>
 

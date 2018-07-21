@@ -1,8 +1,13 @@
 <h2>Brand: <%= @brand.name() %></h2>
 <hr>
 
-<% if @store %>
-  <h3> Currently available at: <%= @store.name %> </h3>
+<% if @brand.stores.any? %>
+  <h3> Currently available at these stores: </h3>
+  <ul>
+    <% @brand.stores.each() do |store_brand| %>
+      <li><%= store_brand.name %></li>
+    <% end %>
+  </ul>
 
 <% else %>
     <p><strong>This shoe is not available at any stores.</strong></p>
