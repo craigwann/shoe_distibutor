@@ -1,6 +1,5 @@
-<h2>Brands</h2>
+<h1>Shoe Brands</h1>
 <hr>
-<br>
 
 <% if @brands == [] %>
 
@@ -8,7 +7,7 @@
 
 <% else %>
 
-<p>Current Shoe Brands</p>
+<h3>Avaiable Shoe Brands</h3>
 <ul>
 
   <% @brands.each() do |brand| %>
@@ -30,5 +29,5 @@
     <label for="brand_price">Price:  $</label>
     <input type="number" min="0.01" step="0.01" name="brand_price" id="brand_price" class="form-control">
   </div>
-  <button type="submit">Add Brand</button>
+  <button class="btn btn-success" type="submit">Add Brand</button>
 </form>
