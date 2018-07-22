@@ -5,7 +5,7 @@
   <h3>Here are the brands currently available at this store:</h3>
   <ul>
     <% @store.brands.each() do |store_brand| %>
-      <li><%= store_brand.name %> - $<%= sprintf("%.2f", store_brand.price().to_i) %></li>
+      <li><%= store_brand.name %> - $<%= sprintf("%.2f", store_brand.price().to_f) %></li>
     <% end %>
   </ul>
 
@@ -25,7 +25,7 @@
   <select id="brand_id" name="brand_id">
     <option value=""></option>
     <% @brands.each() do |brand| %>
-      <option value="<%= brand.id() %>"><%= brand.name() %> - $<%= sprintf("%.2f", brand.price().to_i) %></option>
+      <option value="<%= brand.id() %>"><%= brand.name() %> - $<%= sprintf("%.2f", brand.price().to_f) %></option>
     <% end %>
   </select>
   <button class="btn btn-primary" type="submit">Add Shoe</button>
