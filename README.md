@@ -55,6 +55,6 @@ Database Schema
 License
 -------
 
-GNU GPL v2. Copyright 2015 **Epicodus**
+GNU GPL v2. / MIT Copyright 2018 **Craig Wann**
 
 ***Small change to README added to bookmark completion of many-to-many relationship between brands and stores***
