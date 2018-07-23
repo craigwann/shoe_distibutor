@@ -28,11 +28,14 @@ describe('shoe brand functionality through application', {:type => :feature}) do
     expect(page).to have_content('Twinkle Toes')
   end
   it('4: allows a user to add brand to a store') do
-    shoe1 = Brand.new({:name => 'Humble Huarache', :price => 19.99})
-    shoe2 = Brand.new({:name => 'Comfort Clog', :price => 29.50})
-    store1 = Store.new({:name => 'The Shoebox'})
     visit('/')
+    click_link('View Shoe Brands')
+    fill_in('brand_name', :with => "Comfort Clog")
+    fill_in('brand_price', :with => "29.50")
+    click_button('Add Brand')
     click_link('View Stores')
+    fill_in('store_name', :with => "The Shoebox")
+    click_button('Add Store')
     click_link('The Shoebox')
 
     select('Comfort Clog - $29.50', :from => 'brand_id')
