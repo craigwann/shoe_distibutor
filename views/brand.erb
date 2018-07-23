@@ -1,30 +1,51 @@
-<h2>Brand: <%= @brand.name() %></h2>
+<div class="jumbotron">
+  <h1>Brand: <%= @brand.name() %></h1>
+</div>
 <hr>
 
-<% if @brand.stores.any? %>
-  <h3> Currently available at these stores: </h3>
-  <ul>
-    <% @brand.stores.each() do |store_brand| %>
-      <li><%= store_brand.name %></li>
-    <% end %>
-  </ul>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Currently available at these stores:</h3>
+      </div>
+      <div class="panel-body">
+        <% if @brand.stores.any? %>
+          <h3> Currently available at these stores: </h3>
+          <ul>
+            <% @brand.stores.each() do |store_brand| %>
+              <li><%= store_brand.name %></li>
+            <% end %>
+          </ul>
 
-<% else %>
-    <p><strong>This shoe is not available at any stores.</strong></p>
-    <br>
-    <p><a href="/stores">Add a store to the database</a></p>
-<% end %>
-<hr>
-<h4>Assign <strong><%= @brand.name() %></strong> to a store:</h4>
-<form id="update_store_id" action="/brands/<%= @brand.id() %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <input type="hidden" name="brand_id" id="brand_id" value="<%= @brand.id() %>">
-  <label for="store_select">Select the Store:  </label>
-    <br>
-  <select id="store_id" name="store_id">
-    <% @stores.each() do |store| %>
-      <option value="<%= store.id() %>"><%= store.name() %></option>
-    <% end %>
-  </select>
-  <button class="btn btn-primary" type="submit">Submit</button>
-</form>
+        <% else %>
+            <p><strong>This shoe is not available at any stores.</strong></p>
+            <br>
+            <p><a href="/stores">Add a store to the database</a></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Assign <strong><%= @brand.name() %></strong> to a store:</h3>
+      </div>
+      <div class="panel-body">
+        <form id="update_store_id" action="/brands/<%= @brand.id() %>" method="post">
+          <input name="_method" type="hidden" value="patch">
+          <input type="hidden" name="brand_id" id="brand_id" value="<%= @brand.id() %>">
+          <label for="store_select">Select the Store:  </label>
+            <br>
+          <select id="store_id" name="store_id">
+            <% @stores.each() do |store| %>
+              <option value="<%= store.id() %>"><%= store.name() %></option>
+            <% end %>
+          </select>
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

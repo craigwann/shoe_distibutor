@@ -1,47 +1,80 @@
-<h2> <%= @store.name() %></h2>
+<div class="jumbotron">
+  <h1> <%= @store.name() %></h1>
+</div>
 <hr>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Here are the brands currently available at this store:</h3>
+      </div>
+      <div class="panel-body">
+        <% if @store.brands.any? %>
+          <ul>
+            <% @store.brands.each() do |store_brand| %>
+              <li><%= store_brand.name %> - $<%= sprintf("%.2f", store_brand.price().to_f) %></li>
+            <% end %>
+          </ul>
+        <% else %>
+            <p><strong>There are currently no shoe brands assigned to this store.</strong></p>
+            <br>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<% if @store.brands.any? %>
-  <h3>Here are the brands currently available at this store:</h3>
-  <ul>
-    <% @store.brands.each() do |store_brand| %>
-      <li><%= store_brand.name %> - $<%= sprintf("%.2f", store_brand.price().to_f) %></li>
-    <% end %>
-  </ul>
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add an brand to this store:</h3>
+      </div>
+      <div class="panel-body">
+        <form id="add_brand_id" action="/stores/<%= @store.id %>/brand" method="post">
+          <input name="_method" type="hidden" value="post">
+          <input type="hidden" name="store_id" id="store_id" value="<%= @store.id() %>">
+          <label for="brand_id">Select an brand:  </label>
+            <br>
+          <select id="brand_id" name="brand_id">
+            <option value=""></option>
+            <% @brands.each() do |brand| %>
+              <option value="<%= brand.id() %>"><%= brand.name() %> - $<%= sprintf("%.2f", brand.price().to_f) %></option>
+            <% end %>
+          </select>
+          <button class="btn btn-success" type="submit">Add Shoe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-<% else %>
-
-    <p><strong>There are currently no shoe brands assigned to this store.</strong></p>
-    <br>
-
-<% end %>
-<hr>
-<h4>Add an brand to this store:<h4>
-<form id="add_brand_id" action="/stores/<%= @store.id %>/brand" method="post">
-  <input name="_method" type="hidden" value="post">
-  <input type="hidden" name="store_id" id="store_id" value="<%= @store.id() %>">
-  <label for="brand_id">Select an brand:  </label>
-    <br>
-  <select id="brand_id" name="brand_id">
-    <option value=""></option>
-    <% @brands.each() do |brand| %>
-      <option value="<%= brand.id() %>"><%= brand.name() %> - $<%= sprintf("%.2f", brand.price().to_f) %></option>
-    <% end %>
-  </select>
-  <button class="btn btn-primary" type="submit">Add Shoe</button>
-</form>
-<hr>
-
-<form action="/stores/<%= @store.id() %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <label for="name">Rename this store:</label>
-  <input id="name" name="name" type="text">
-  <button type="submit" class="btn btn-warning">Update</button>
-</form>
-
-<hr>
-<form action="/stores/<%= @store.id() %>" method="post">
-  <input name="_method" type="hidden" value="delete">
-  <label for="name">Delete <em><%= @store.name() %></em>:</label>
-  <button type="submit" class="btn btn-danger">Delete this Store</button>
-</form>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">Update <%= @store.name() %></h3>
+      </div>
+      <div class="panel-body">
+        <form action="/stores/<%= @store.id() %>" method="post">
+          <input name="_method" type="hidden" value="patch">
+          <label for="name">Rename this store:</label>
+          <input id="name" name="name" type="text">
+          <button type="submit" class="btn btn-warning">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">Delete <%= @store.name() %> </h3>
+      </div>
+      <div class="panel-body">
+        <form action="/stores/<%= @store.id() %>" method="post">
+          <input name="_method" type="hidden" value="delete">
+          <label for="name">Delete <em><%= @store.name() %></em>:</label>
+          <button type="submit" class="btn btn-danger">Delete this Store</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

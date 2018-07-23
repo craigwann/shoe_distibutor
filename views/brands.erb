@@ -1,33 +1,50 @@
-<h1>Shoe Brands</h1>
+<div class="jumbotron">
+  <h1>Shoe Brands</h1>
+</div>
 <hr>
 
-<% if @brands == [] %>
+<div class="row">
+  <div class="col-md-6">
 
-<p>There are currently no brands in the database</p>
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">Avaiable Shoe Brands:</h3>
+          </div>
+          <div class="panel-body">
+            <% if @brands == [] %>
+            <p>There are currently no brands in the database</p>
+            <% else %>
+            <ul>
+              <% @brands.each() do |brand| %>
+              <li><a href="/brands/<%= brand.id() %>"><%= brand.name() %> - $<%= sprintf("%.2f", brand.price().to_f) %></a></li>
+              <% end %>
+            </ul>
+            <% end %>
+          </div>
+        </div>
 
-<% else %>
-
-<h3>Avaiable Shoe Brands:</h3>
-<ul>
-
-  <% @brands.each() do |brand| %>
-
-  <li><a href="/brands/<%= brand.id() %>"><%= brand.name() %> - $<%= sprintf("%.2f", brand.price().to_f) %></a></li>
-
-  <% end %>
-
-</ul>
-
-<% end %>
-<h3> Add an brand: </h3>
-<form action="/brands" method="post">
-  <div class="form-group">
-    <label for="brand_name">Brand Name:  </label>
-    <input type="text" name="brand_name" id="brand_name" class="form-control">
   </div>
-  <div class="form-group">
-    <label for="brand_price">Price:  $</label>
-    <input type="number" min="0.01" step="0.01" name="brand_price" id="brand_price" class="form-control">
+
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add an brand:</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/brands" method="post">
+          <div class="form-group">
+            <label for="brand_name">Brand Name:  </label>
+            <input type="text" name="brand_name" id="brand_name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="brand_price">Price:  $</label>
+            <input type="number" min="0.01" step="0.01" name="brand_price" id="brand_price" class="form-control">
+          </div>
+          <button class="btn btn-success" type="submit">Add Brand</button>
+        </form>
+      </div>
+    </div>
+
   </div>
-  <button class="btn btn-success" type="submit">Add Brand</button>
-</form>
+
+</div>

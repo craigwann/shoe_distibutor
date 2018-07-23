@@ -5,3 +5,11 @@ font-size: 18px;
 em {
   font-weight: bolder;
 }
+
+button a  {
+color: white;
+}
+
+button a:hover  {
+color: rgb(240, 245, 245);
+}

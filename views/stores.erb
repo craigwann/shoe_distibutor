@@ -1,29 +1,46 @@
-<h2>Stores</h2>
+<div class="jumbotron">
+  <h1>Stores</h1>
+</div>
 <hr>
-<br>
+<div class="row">
+  <div class="col-md-6">
 
-<% if @stores == [] %>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Current Store List:</h3>
+      </div>
+      <div class="panel-body">
+        <% if @stores == [] %>
+        <h4>There are currently no stores in the database</h4>
+        <% else %>
+        <ul>
+          <% @stores.each() do |store| %>
+          <li><a href="/stores/<%= store.id() %>"><%= store.name() %></a></li>
+          <% end %>
+        </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<p>There are currently no stores in the database</p>
+  <div class="col-md-6">
+    <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Add a store:</h3>
+    </div>
+    <div class="panel-body">
+      <form action="/stores" method="post">
+        <label for="store_name">Store Name:  </label>
+        <input type="text" name="store_name" id="store_name">
+        <button class="btn btn-primary" type="submit">Add Store</button>
+      </form>
+    </div>
+    </div>
 
-<% else %>
 
-<p>Current Stores</p>
-<ul>
 
-  <% @stores.each() do |store| %>
 
-  <li><a href="/stores/<%= store.id() %>"><%= store.name() %></a></li>
 
-  <% end %>
+  </div>
 
-</ul>
-
-<% end %>
-
-<h3> Add a store: </h3>
-<form action="/stores" method="post">
-  <label for="store_name">Store Name:  </label>
-  <input type="text" name="store_name" id="store_name">
-  <button class="btn btn-primary" type="submit">Add Store</button>
-</form>
+</div>
